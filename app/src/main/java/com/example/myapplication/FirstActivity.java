@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -59,6 +62,64 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+        // 用例1：活动的生命周期
+        Log.d("FirstActivity","onCreate");
+        Button start_normal_activity = findViewById(R.id.start_normal_activity);
+        Button start_dialog_activity = findViewById(R.id.start_dialog_activity);
+        start_normal_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, NormalActivity.class);
+                startActivity(intent);
+            }
+        });
+        start_dialog_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, DialogActivity.class);
+                startActivity(intent);
+            }
+        });
+        if (savedInstanceState != null){
+            String tempData = savedInstanceState.getString("data_key");
+            Log.d("FirstActivity",tempData);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("FirstActivity","onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("FirstActivity","onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("FirstActivity","onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("FirstActivity","onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("FirstActivity","onDestroy");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("FirstActivity","onRestart");
     }
 
     @Override
@@ -97,5 +158,10 @@ public class FirstActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    protected void onSaveInstanceState(@NonNull @NotNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String tempData = "你刚刚输入的内容";
+        outState.putString("data_key",tempData);
+    }
 }
