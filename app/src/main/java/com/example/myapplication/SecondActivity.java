@@ -2,13 +2,23 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class SecondActivity extends AppCompatActivity {
+public class SecondActivity extends BasicActivity {
+    // 2.6 启动活动的最佳写法:
+    // 新增一个actionStart()方法，将启动SecondActivity所需要的参数，比如data1和data2暴露给调用方，
+    // 这样调用方就知道启动SecondActivity的时候需要传什么参数了。
+    public static void actionStart(Context context,String data1,String data2){
+        Intent intent = new Intent(context, SecondActivity.class);
+        intent.putExtra("param1", data1);
+        intent.putExtra("param2", data2);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
