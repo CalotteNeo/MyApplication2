@@ -22,8 +22,18 @@ public class FirstActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // TaskId是啥？通过activity.getTaskId()从我的正在运行的活动中获取应用ID
+        Log.d("FirstActivity","Task-id是"+getTaskId());
         setContentView(R.layout.first_layout);
         Button button1 = (Button)findViewById(R.id.button1);
+        // 用例：启动模式
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
         // 用例1：显式/隐式Intent
 //        button1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -53,37 +63,37 @@ public class FirstActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        // 用例4：返回数据给上一个活动
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
-                startActivityForResult(intent,1);//请求码在onActivityResult中使用
-            }
-        });
-
-        // 用例1：活动的生命周期
-        Log.d("FirstActivity","onCreate");
-        Button start_normal_activity = findViewById(R.id.start_normal_activity);
-        Button start_dialog_activity = findViewById(R.id.start_dialog_activity);
-        start_normal_activity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, NormalActivity.class);
-                startActivity(intent);
-            }
-        });
-        start_dialog_activity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FirstActivity.this, DialogActivity.class);
-                startActivity(intent);
-            }
-        });
-        if (savedInstanceState != null){
-            String tempData = savedInstanceState.getString("data_key");
-            Log.d("FirstActivity",tempData);
-        }
+//        // 用例4：返回数据给上一个活动
+//        button1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+//                startActivityForResult(intent,1);//请求码在onActivityResult中使用
+//            }
+//        });
+//
+//        // 用例1：活动的生命周期
+//        Log.d("FirstActivity","onCreate");
+//        Button start_normal_activity = findViewById(R.id.start_normal_activity);
+//        Button start_dialog_activity = findViewById(R.id.start_dialog_activity);
+//        start_normal_activity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(FirstActivity.this, NormalActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        start_dialog_activity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(FirstActivity.this, DialogActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        if (savedInstanceState != null){
+//            String tempData = savedInstanceState.getString("data_key");
+//            Log.d("FirstActivity",tempData);
+//        }
     }
 
     @Override

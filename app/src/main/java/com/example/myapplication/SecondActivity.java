@@ -13,19 +13,28 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("SecondActivity","Task-id是"+getTaskId());
         setContentView(R.layout.second_layout);
+        Button button2 = (Button) findViewById(R.id.button2);
 //        Intent intent = getIntent();
 //        String data = intent.getStringExtra("extra data");
 //        Log.d("SecondActivity",data);
-        // 用例4：通过点击按钮返回数据给上一个活动
-        Button button2 = (Button) findViewById(R.id.button2);
+//        // 用例4：通过点击按钮返回数据给上一个活动
+//
+//        button2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent();
+//                intent.putExtra("data return","hello FirstActivity");
+//                setResult(RESULT_OK,intent);
+//                finish();
+//            }
+//        });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("data return","hello FirstActivity");
-                setResult(RESULT_OK,intent);
-                finish();
+                Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -37,5 +46,11 @@ public class SecondActivity extends AppCompatActivity {
         intent.putExtra("data return","你好，firstActivity，我从Back键返回");
         setResult(RESULT_OK,intent);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("SecondActivity","onDestroy");
     }
 }
