@@ -21,5 +21,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/start_dialog_activity"
         android:text="开启dialog活动"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/control_progress"
+        android:text="控制进度条"/>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:id="@+id/progress_bar"/>
 
 </LinearLayout>

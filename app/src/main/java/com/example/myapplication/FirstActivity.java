@@ -3,8 +3,11 @@ package com.example.myapplication;
 import androidx.annotation.LongDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,11 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
-public class FirstActivity extends BasicActivity {
+public class FirstActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +30,14 @@ public class FirstActivity extends BasicActivity {
         Log.d("FirstActivity","Task-id是"+getTaskId());
         setContentView(R.layout.first_layout);
         Button button1 = (Button)findViewById(R.id.button1);
-        // 用例：启动模式
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SecondActivity.actionStart(FirstActivity.this,"data1","data2");
-            }
-        });
+        button1.setOnClickListener(this);
+//        // 用例：启动模式
+//        button1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SecondActivity.actionStart(FirstActivity.this,"data1","data2");
+//            }
+//        });
         // 用例1：显式/隐式Intent
 //        button1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -93,6 +98,24 @@ public class FirstActivity extends BasicActivity {
 //            String tempData = savedInstanceState.getString("data_key");
 //            Log.d("FirstActivity",tempData);
 //        }
+        Button control_progress = (Button) findViewById(R.id.control_progress);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        control_progress.setOnClickListener(this);
+//        control_progress.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // 3.2 用例：点击按钮修改progressbar的可见性
+////                if (progressBar.getVisibility()==View.GONE){
+////                    progressBar.setVisibility(View.VISIBLE);
+////                }else {
+////                    progressBar.setVisibility(View.GONE);
+////                }
+//                int progress = progressBar.getProgress();
+//                progress = progress+10;
+//                progressBar.setProgress(progress);
+//
+//            }
+//        });
     }
 
     @Override
@@ -172,5 +195,39 @@ public class FirstActivity extends BasicActivity {
         super.onSaveInstanceState(outState);
         String tempData = "你刚刚输入的内容";
         outState.putString("data_key",tempData);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button1:
+                AlertDialog.Builder dialog = new AlertDialog.Builder(FirstActivity.this);
+                dialog.setTitle("提示框");
+                dialog.setMessage("重要的事情说三遍");
+                dialog.setCancelable(false);
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.show();
+                break;
+            case R.id.control_progress:
+                ProgressDialog progressDialog = new ProgressDialog(FirstActivity.this);
+                progressDialog.setTitle("这是一个progressDialog");
+                progressDialog.setMessage("Loading...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                break;
+            default:
+                break;
+        }
     }
 }
