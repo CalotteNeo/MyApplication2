@@ -9,7 +9,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/button1"
         android:text="Buuton 1"
-        android:textColor="@color/purple_200"
         />
     <Button
         android:layout_width="match_parent"
@@ -26,11 +25,30 @@
         android:layout_height="wrap_content"
         android:id="@+id/control_progress"
         android:text="控制进度条"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/popup_window"
+        android:text="点击弹出弹框"
+        android:textColor="@color/purple_200"
+        />
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyleHorizontal"
         android:max="100"
         android:id="@+id/progress_bar"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_layout_activity"
+        android:text="点击跳转布局页面"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_UICustomViews"
+        android:text="点击跳转自定义控件页面"
+        />
 
 </LinearLayout>

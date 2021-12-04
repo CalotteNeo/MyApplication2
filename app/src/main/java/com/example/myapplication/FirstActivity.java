@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +31,6 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
         Log.d("FirstActivity","Task-id是"+getTaskId());
         setContentView(R.layout.first_layout);
         Button button1 = (Button)findViewById(R.id.button1);
-        button1.setOnClickListener(this);
 //        // 用例：启动模式
 //        button1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -39,15 +39,15 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
 //            }
 //        });
         // 用例1：显式/隐式Intent
-//        button1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent("com.example.myapplication.ACTION_START");
-////                Intent intent1 =  new Intent(FirstActivity.this,SecondActivity.class);
-//                intent.addCategory("com.example.myapplication.MY_CATEGORY");
-//                startActivity(intent);
-//            }
-//        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.example.myapplication.ACTION_START");
+//                Intent intent1 =  new Intent(FirstActivity.this,SecondActivity.class);
+                intent.addCategory("com.example.myapplication.MY_CATEGORY");
+                startActivity(intent);
+            }
+        });
 //        // 用例2：其他隐式Intent
 //        button1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -76,46 +76,54 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
 //            }
 //        });
 //
-//        // 用例1：活动的生命周期
-//        Log.d("FirstActivity","onCreate");
-//        Button start_normal_activity = findViewById(R.id.start_normal_activity);
-//        Button start_dialog_activity = findViewById(R.id.start_dialog_activity);
-//        start_normal_activity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(FirstActivity.this, NormalActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//        start_dialog_activity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(FirstActivity.this, DialogActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        // 用例1：活动的生命周期
+        Log.d("FirstActivity","onCreate");
+        Button start_normal_activity = findViewById(R.id.start_normal_activity);
+        Button start_dialog_activity = findViewById(R.id.start_dialog_activity);
+        start_normal_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, NormalActivity.class);
+                startActivity(intent);
+            }
+        });
+        start_dialog_activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, DialogActivity.class);
+                startActivity(intent);
+            }
+        });
 //        if (savedInstanceState != null){
 //            String tempData = savedInstanceState.getString("data_key");
 //            Log.d("FirstActivity",tempData);
 //        }
         Button control_progress = (Button) findViewById(R.id.control_progress);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        control_progress.setOnClickListener(this);
-//        control_progress.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // 3.2 用例：点击按钮修改progressbar的可见性
-////                if (progressBar.getVisibility()==View.GONE){
-////                    progressBar.setVisibility(View.VISIBLE);
-////                }else {
-////                    progressBar.setVisibility(View.GONE);
-////                }
-//                int progress = progressBar.getProgress();
-//                progress = progress+10;
-//                progressBar.setProgress(progress);
-//
-//            }
-//        });
+        control_progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 3.2 用例：点击按钮修改progressbar的可见性
+//                if (progressBar.getVisibility()==View.GONE){
+//                    progressBar.setVisibility(View.VISIBLE);
+//                }else {
+//                    progressBar.setVisibility(View.GONE);
+//                }
+                int progress = progressBar.getProgress();
+                progress = progress+10;
+                progressBar.setProgress(progress);
+                Toast toast = Toast.makeText(getApplicationContext(),"进度条+10了哦~",Toast.LENGTH_LONG);
+//                toast.setGravity(Gravity.TOP,0,0);
+                toast.show();
+
+            }
+        });
+        Button popup_window = (Button)findViewById(R.id.popup_window);
+        popup_window.setOnClickListener(this);
+        Button start_layout_activity = (Button)findViewById(R.id.start_layout_activity);
+        start_layout_activity.setOnClickListener(this);
+        Button start_UICustomViews= (Button)findViewById(R.id.start_UICustomViews);
+        start_UICustomViews.setOnClickListener(this);
     }
 
     @Override
@@ -200,7 +208,7 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.button1:
+            case R.id.popup_window:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(FirstActivity.this);
                 dialog.setTitle("提示框");
                 dialog.setMessage("重要的事情说三遍");
@@ -219,13 +227,12 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
                 });
                 dialog.show();
                 break;
-            case R.id.control_progress:
-                ProgressDialog progressDialog = new ProgressDialog(FirstActivity.this);
-                progressDialog.setTitle("这是一个progressDialog");
-                progressDialog.setMessage("Loading...");
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-                break;
+            case R.id.start_layout_activity:
+                Intent intent = new Intent(FirstActivity.this,LayoutActivity.class);
+                startActivity(intent);
+            case R.id.start_UICustomViews:
+                Intent intent2 = new Intent(FirstActivity.this,UICustomViewsActivity.class);
+                startActivity(intent2);
             default:
                 break;
         }

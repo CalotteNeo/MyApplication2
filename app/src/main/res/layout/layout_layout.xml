@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1"
+        android:text="Button 1"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        />
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:text="Button 2"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        />
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:text="Button 3，点我切换成FrameLayout"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        />
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/change_orientation"
+        android:text="点击此按钮修改成RelativeLayout"
+        android:layout_weight="1"
+        />
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_message"
+        android:layout_weight="1"
+        android:hint="这个页面是LinearLayout"/>
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/send"
+        android:layout_weight="1"
+        android:text="发送"/>
+
+</LinearLayout>
