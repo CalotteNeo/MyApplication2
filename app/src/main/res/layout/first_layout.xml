@@ -50,5 +50,17 @@
         android:id="@+id/start_UICustomViews"
         android:text="点击跳转自定义控件页面"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_ListView"
+        android:text="点击跳转ListView界面"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_UIBestPractice"
+        android:text="点击打开编写界面的最佳实践——聊天界面（未完成）"
+        />
 
 </LinearLayout>

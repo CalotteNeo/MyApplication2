@@ -124,6 +124,9 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
         start_layout_activity.setOnClickListener(this);
         Button start_UICustomViews= (Button)findViewById(R.id.start_UICustomViews);
         start_UICustomViews.setOnClickListener(this);
+        Button start_ListView= (Button)findViewById(R.id.start_ListView);
+        start_ListView.setOnClickListener(this);
+
     }
 
     @Override
@@ -230,9 +233,15 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
             case R.id.start_layout_activity:
                 Intent intent = new Intent(FirstActivity.this,LayoutActivity.class);
                 startActivity(intent);
+                break;
             case R.id.start_UICustomViews:
                 Intent intent2 = new Intent(FirstActivity.this,UICustomViewsActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.start_ListView:
+                Intent intent3 = new Intent(FirstActivity.this,ListViewActivity.class);
+                startActivity(intent3);
+                break;
             default:
                 break;
         }

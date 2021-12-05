@@ -10,15 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".UICustomViewsActivity"></activity>
+        <activity
+            android:name=".ListViewActivity"
+            android:label="Musicians" />
+        <activity android:name=".UICustomViewsActivity"
+            android:label="自定义控件"/>
         <activity
             android:name=".LayoutActivity"
             android:label="This is LayoutActivity" />
         <activity
             android:name=".DialogActivity"
-            android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity android:name=".NormalActivity" />
-        <activity android:name=".ThirdActivity">
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:label="DialogActivity" />
+        <activity android:name=".NormalActivity"
+            android:label="NormalActivity" />
+        <activity android:name=".ThirdActivity"
+            android:label="ThirdActivity" >
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -29,7 +36,8 @@
         </activity>
         <activity
             android:name=".SecondActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:label="SecondActivity">
             <intent-filter>
                 <action android:name="com.example.myapplication.ACTION_START" />
 
