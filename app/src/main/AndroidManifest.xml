@@ -5,9 +5,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/juanwang"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/juanwang"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
@@ -47,7 +47,6 @@
         </activity>
         <activity
             android:name=".FirstActivity"
-            android:label="This is FirstActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
