@@ -62,5 +62,11 @@
         android:id="@+id/start_UIBestPractice"
         android:text="点击打开编写界面的最佳实践——聊天界面（未完成）"
         />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/start_BroadcastActivity"
+        android:text="点击打开广播练习页面"
+        />
 
 </LinearLayout>

@@ -126,6 +126,8 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
         start_UICustomViews.setOnClickListener(this);
         Button start_ListView= (Button)findViewById(R.id.start_ListView);
         start_ListView.setOnClickListener(this);
+        Button start_BroadcastActivity= (Button)findViewById(R.id.start_BroadcastActivity);
+        start_BroadcastActivity.setOnClickListener(this);
 
     }
 
@@ -241,6 +243,10 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
             case R.id.start_ListView:
                 Intent intent3 = new Intent(FirstActivity.this,ListViewActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.start_BroadcastActivity:
+                Intent intent4 = new Intent(FirstActivity.this,BroadcastActivity.class);
+                startActivity(intent4);
                 break;
             default:
                 break;
