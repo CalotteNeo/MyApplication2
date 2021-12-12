@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+/**
+ * 接收“开机完成”广播的广播接收器，自定义
+ */
 public class BootCompleteReceiver extends BroadcastReceiver {
 
     @Override

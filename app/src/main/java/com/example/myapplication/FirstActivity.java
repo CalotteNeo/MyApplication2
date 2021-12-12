@@ -7,23 +7,37 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class FirstActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private EditText edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +142,25 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
         start_ListView.setOnClickListener(this);
         Button start_BroadcastActivity= (Button)findViewById(R.id.start_BroadcastActivity);
         start_BroadcastActivity.setOnClickListener(this);
+        Button send_broadcast = (Button) findViewById(R.id.send_broadcast);
+        send_broadcast.setOnClickListener(this);
+        edit = (EditText) findViewById(R.id.edit);
+        String inputText = load();
+        if (!TextUtils.isEmpty(inputText)) {
+            edit.setText(inputText);
+            // 将输入光标移动到文本的末尾位置
+            edit.setSelection(inputText.length());
+            Toast.makeText(this, "Restoring succeed", Toast.LENGTH_SHORT).show();
+        }
 
+        // sharedPreferences()
+        Button saveData = (Button) findViewById(R.id.save_data);
+        saveData.setOnClickListener(this);
+        Button restore_data = (Button) findViewById(R.id.restore_data);
+        restore_data.setOnClickListener(this);
+        // 登录页
+        Button start_login = (Button) findViewById(R.id.start_login);
+        start_login.setOnClickListener(this);
     }
 
     @Override
@@ -159,6 +191,59 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
     protected void onDestroy() {
         super.onDestroy();
         Log.d("FirstActivity","onDestroy");
+        String inputText = edit.getText().toString();
+        save(inputText);
+    }
+
+    private void save(String inputText) {
+        FileOutputStream out = null;
+        BufferedWriter writer = null;
+        try {
+            // 文件命名为data
+            out = openFileOutput("data", Context.MODE_PRIVATE);
+            // java流的方式来写
+            writer = new BufferedWriter(new OutputStreamWriter(out));
+            writer.write(inputText);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer!=null){
+                    writer.close();
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+    public String load(){
+        FileInputStream in = null;
+        // 用BufferedReader来一行行地读取
+        BufferedReader reader = null;
+        StringBuilder content = new StringBuilder();
+        try {
+            in = openFileInput("data");
+            reader = new BufferedReader(new InputStreamReader(in));
+            String line = "";
+            while ((line = reader.readLine()) != null){
+                content.append(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if (reader != null){
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return content.toString();
     }
 
     @Override
@@ -247,6 +332,32 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
             case R.id.start_BroadcastActivity:
                 Intent intent4 = new Intent(FirstActivity.this,BroadcastActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.send_broadcast:
+                // Intent(自定义action)
+                Intent intent5 = new Intent("com.example.myapplication.MY_BROADCAST");
+                // 标准广播
+                sendBroadcast(intent5);
+                break;
+            case R.id.save_data:
+                // 通过getSharedPreferences()指定SharedPreferences的文件名为SharedData
+                SharedPreferences.Editor editor = getSharedPreferences("SharedData",MODE_PRIVATE).edit();
+                editor.putString("name","nizilin");
+                editor.putInt("age", 26);
+                editor.putBoolean("married",false);
+                // apply()方法来提交
+                editor.apply();
+                break;
+            case R.id.restore_data:
+                SharedPreferences pref = getSharedPreferences("SharedData",MODE_PRIVATE);
+                String name = pref.getString("name","");
+                int age = pref.getInt("age",0);
+                boolean married = pref.getBoolean("married",false);
+                Toast.makeText(this,"姓名："+name+"-年龄："+age+"-婚姻状况："+married,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.start_login:
+                Intent intent6 = new Intent(FirstActivity.this,LoginActivity.class);
+                startActivity(intent6);
                 break;
             default:
                 break;
