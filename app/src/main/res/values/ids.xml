@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="start_normal_activity" type="id" />
+    <item name="start_dialog_activity" type="id" />
+    <item name="popup_window" type="id" />
+    <item name="start_layout_activity" type="id" />
+    <item name="start_UICustomViews" type="id" />
+    <item name="start_ListView" type="id" />
+    <item name="start_BroadcastActivity" type="id" />
+    <item name="send_broadcast" type="id" />
+    <item name="save_data" type="id" />
+    <item name="restore_data" type="id" />
+    <item name="start_login" type="id" />
+    <item name="control_progress" type="id" />
+    <item name="start_UIBestPractice" type="id" />
+</resources>

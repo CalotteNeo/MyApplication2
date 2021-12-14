@@ -3,100 +3,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:text="Buuton 1"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_normal_activity"
-        android:text="开启normal活动"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_dialog_activity"
-        android:text="开启dialog活动"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/control_progress"
-        android:text="控制进度条"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/popup_window"
-        android:text="点击弹出弹框"
-        android:textColor="@color/purple_200"
-        />
+        android:layout_weight="40"
+        android:id="@+id/first_list_view"/>
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyleHorizontal"
         android:max="100"
+        android:layout_weight="1"
         android:id="@+id/progress_bar"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_layout_activity"
-        android:text="点击跳转布局页面"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_UICustomViews"
-        android:text="点击跳转自定义控件页面"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_ListView"
-        android:text="点击跳转ListView界面"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/start_UIBestPractice"
-        android:text="点击打开编写界面的最佳实践——聊天界面（未完成）"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/start_BroadcastActivity"
-        android:text="点击打开广播练习页面"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/send_broadcast"
-        android:text="发送自定义广播"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/save_files"
+        android:layout_weight="1"
         android:text="下面是输入框，输入任意字符，点击返回时，会自动将输入内容保存至本地文件"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit"
+        android:layout_weight="1"
         android:hint="输入文字"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/save_data"
-        android:text="用SharedPreferences保存data"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/restore_data"
-        android:text="恢复保存的SharedPreferences数据"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/start_login"
-        android:text="跳转到登录页"/>
 
 
 </LinearLayout>
