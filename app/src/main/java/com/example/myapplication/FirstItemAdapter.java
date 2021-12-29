@@ -27,6 +27,7 @@ import java.util.List;
 public class FirstItemAdapter extends ArrayAdapter<Button> {
     private int resourceId;
     private Context mcontext;
+    private MyDatabaseHelper databaseHelper;
     public FirstItemAdapter(Context context, int textViewResourceId, List<Button> objects){
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
@@ -124,6 +125,11 @@ public class FirstItemAdapter extends ArrayAdapter<Button> {
                     case R.id.start_login:
                         intent = new Intent(mcontext,LoginActivity.class);
                         mcontext.startActivity(intent);
+                        break;
+                    case R.id.create_database:
+                        databaseHelper = new MyDatabaseHelper(mcontext, "BookStore.db", null, 1);
+                        databaseHelper.getWritableDatabase();
+//                        Toast.makeText(mcontext,"建表了",Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         break;

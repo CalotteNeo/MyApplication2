@@ -196,6 +196,10 @@ public class FirstActivity extends AppCompatActivity{
         start_login.setText("跳转到登录页");
         start_login.setId(R.id.start_login);
         ButtonList.add(start_login);
+        Button create_database = new Button(mcontext);
+        start_login.setText("创建数据库");
+        start_login.setId(R.id.create_database);
+        ButtonList.add(create_database);
 
 
 

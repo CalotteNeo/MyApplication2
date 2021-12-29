@@ -13,4 +13,5 @@
     <item name="start_login" type="id" />
     <item name="control_progress" type="id" />
     <item name="start_UIBestPractice" type="id" />
+    <item name="create_database" type="id" />
 </resources>
